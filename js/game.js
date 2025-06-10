@@ -11,10 +11,10 @@ var config = {
   physics: {
     default: 'matter',
     matter: {
-      gravity: {
-        y: 0,
-      },
-      debug: false
+      debug: {
+        showBody: true,
+        showStaticBody: true
+      }
     },
   },
 };
@@ -23,11 +23,19 @@ var game = new Phaser.Game(config);
 
 function create() {
   this.cameras.main.setBackgroundColor("#A5D1FE");
-  background = this.add.sprite(0, 0, "background");
-  background.setOrigin(0);
   if (objectData == undefined) {
-    objectData = this.cache.json.get('background');
+    objectData = this.cache.json.get('ground');
   }
+  var cat = this.add.container(game.width / 2, game.height / 2);
+  cat.add(this.add.sprite(0, 0, 'groundImage'));
+
+  this.matter.add.gameObject(cat, { shape: objectData.ground, isStatic: true });
+
+
+  //console.log(objectData.ground.fixtures[0].vertices);
+
+
+  this.matter.world.setBounds(0, 0, game.config.width, game.config.height);
 }
 function update() {
 

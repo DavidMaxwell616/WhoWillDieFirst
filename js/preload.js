@@ -6,8 +6,8 @@ function preload() {
 
   this.load.path = '../assets/images/';
   this.load.image('maxxdaddy', 'maxxdaddy.gif');
-  this.load.image('background', 'background.png');
+  this.load.image('groundImage', 'ground.png');
   this.load.path = '../assets/json/';
-  this.load.json('background', 'background.json');
+  this.load.json('ground', 'background2.json');
 
 }
