@@ -1,5 +1,6 @@
-const WIDTH = 1200;
-const HEIGHT = 675;
-var background;
+const WIDTH = 1000;
+const HEIGHT = 600;
 var objectData;
+var ball;
+var fulcrum;
 
