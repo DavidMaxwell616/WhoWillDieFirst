@@ -10,7 +10,7 @@ function preload() {
   this.load.image('ball', 'ball.png');
   this.load.image('ball2', 'ball2.png');
   this.load.image('guy1', 'guy 1.png');
-  this.load.image('guy2', 'guy 2.png');
+  this.load.spritesheet('guy2', 'guy2.png', { frameWidth: 525, frameHeight: 925 });
   this.load.image('guy4', 'guy 4.png');
   this.load.image('fulcrum', 'fulcrum.png');
   this.load.spritesheet('pusher', 'pusher.png', { frameWidth: 472, frameHeight: 600 });

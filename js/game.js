@@ -32,20 +32,43 @@ function create() {
   //ground.setScale(.8);
   // console.log(ground.body);
   ground.setPosition(game.config.width * .597 + ground.centerOfMass.x, 500 + ground.centerOfMass.y);  // position (0,280)
-  fulcrum = this.matter.add.sprite(game.config.width * .4, game.config.height * .7, 'fulcrum', null, { shape: objectData.shapes[0].fulcrum });
-  ball = this.matter.add.sprite(game.config.width * .34, game.config.height * .6, 'ball', null, { shape: objectData.shapes[0].ball });
-  ball2 = this.matter.add.sprite(game.config.width * .87, game.config.height * .1, 'ball2', null, { shape: objectData.shapes[0].ball2 });
-  pusher = this.matter.add.sprite(game.config.width * .97, game.config.height * .2, 'pusher', null, { shape: objectData.shapes[0].pusher }).setScale(.15);
-  guy1 = this.matter.add.sprite(game.config.width * .03, game.config.height * .48, 'guy1', null, { shape: objectData.shapes[0].guy1 }).setScale(.6);
-  guy2 = this.matter.add.sprite(game.config.width * .13, game.config.height * .78, 'guy2', null, { shape: objectData.shapes[0].guy1 }).setScale(.6);
-  guy3 = this.matter.add.sprite(game.config.width * .5, game.config.height * .78, 'guy1', null, { shape: objectData.shapes[0].guy1 }).setScale(.6).setAngle(90);
-  guy4 = this.matter.add.sprite(game.config.width * .65, game.config.height * .76, 'guy4', null, { shape: objectData.shapes[0].guy4 });
+  const shapes = objectData.shapes[0];
+  fulcrum = this.matter.add.sprite(game.config.width * .4, game.config.height * .7, 'fulcrum', null, { shape: shapes.fulcrum });
+  ball = this.matter.add.sprite(game.config.width * .34, game.config.height * .6, 'ball', null, { shape: shapes.ball });
+  ball2 = this.matter.add.sprite(game.config.width * .87, game.config.height * .1, 'ball2', null, { shape: shapes.ball2 });
+  pusher = this.matter.add.sprite(game.config.width * .97, game.config.height * .2, 'pusher', null, { shape: shapes.pusher }).setScale(.15);
+  guy1 = this.matter.add.sprite(game.config.width * .03, game.config.height * .48, 'guy1', null, { shape: shapes.guy1 }).setScale(.6);
+  guy2 = this.matter.add.sprite(game.config.width * .13, game.config.height * .78, 'guy2', null, { shape: shapes.guy2 }).setScale(.1);
+  guy3 = this.matter.add.sprite(game.config.width * .5, game.config.height * .78, 'guy1', null, { shape: shapes.guy1 }).setScale(.6).setAngle(90);
+  guy4 = this.matter.add.sprite(game.config.width * .65, game.config.height * .76, 'guy4', null, { shape: shapes.guy4 });
+
+  var txt = this.make.text({
+    x: game.config.width / 2,
+    y: 30,
+    text: 'WHO DIES FIRST?',
+    origin: 0.5,
+    style: {
+      font: 'bold 40px Arial',
+      fill: 'white',
+      backgroundColor: '#D88535'
+    },
+  });
+
   this.anims.create({
     key: 'push',
-    frames: this.anims.generateFrameNumbers('pusher', { start: 1, end: 15 }),
+    frames: this.anims.generateFrameNumbers('pusher', { start: 0, end: 16 }),
     frameRate: 10,
     repeat: 0
   });
+
+  this.anims.create({
+    key: 'walk',
+    frames: this.anims.generateFrameNumbers('guy2', { start: 1, end: 7 }),
+    frameRate: 10,
+    repeat: -1
+  });
+
+  guy2.anims.play('walk');
 
   this.input.on('pointerdown', function (pointer) {
     pusher.anims.play('push');
@@ -57,4 +80,5 @@ function update() {
   if (pusher.anims.isPlaying) {
     pusher.x -= .5;
   }
+  guy2.x += .3;
 }
